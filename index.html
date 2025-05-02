@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SUNUGAL IA - Apprendre le Wolof</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f0f0 url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/African_pattern.svg/1200px-African_pattern.svg.png') repeat;
+      background-size: contain;
+      color: #222;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      margin-top: 2rem;
+    }
+    h1, h2 {
+      color: #1c3c4c;
+    }
+    label, select, input, button {
+      display: block;
+      margin-top: 1rem;
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+    }
+    button {
+      background: #1c3c4c;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #response {
+      margin-top: 2rem;
+      background: #f8f8f8;
+      padding: 1rem;
+      border-left: 4px solid #1c3c4c;
+    }
+    .section {
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>SUNUGAL IA - Apprendre le Wolof</h1>
+    <label for="lang">Langue / Language</label>
+    <select id="lang">
+      <option value="wolof">Wolof</option>
+      <option value="fr">Français</option>
+    </select>
+
+    <label for="question">Ta question / Sa laaj / Your question</label>
+    <input type="text" id="question" placeholder="Écris ici / Write your question">
+
+    <button onclick="ask()">Envoyer / Send</button>
+    <div id="response"></div>
+
+    <div class="section">
+      <h2>Quiz Wolof</h2>
+      <p>Comment dit-on "Merci" en Wolof ?</p>
+      <button onclick="checkQuiz('Jërëjëf')">Jërëjëf</button>
+      <button onclick="checkQuiz('Ba beneen yoon')">Ba beneen yoon</button>
+      <div id="quiz-response"></div>
+    </div>
+
+    <div class="section">
+      <h2>Alphabet et Grammaire de base</h2>
+      <p><strong>A - Z</strong> : Le wolof utilise l'alphabet latin sans accents. Exemples :
+        <ul>
+          <li><strong>mbokk</strong> = parenté</li>
+          <li><strong>ndank</strong> = doucement</li>
+        </ul>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      "Bonjour": "Nanga def",
+      "Merci": "Jërëjëf",
+      "Comment ça va ?": "Naka nga def ?",
+      "Je vais bien": "Ma ngi fi",
+      "Au revoir": "Ba beneen yoon"
+    };
+
+    const learning_wolof = {
+      "Comment dire 'Bonjour' en Wolof ?": "On dit 'Nanga def' en Wolof.",
+      "Que signifie 'Jamm rekk' ?": "Cela signifie 'La paix' en Wolof, utilisé pour dire 'tout va bien'."
+    };
+
+    function ask() {
+      const lang = document.getElementById("lang").value;
+      const question = document.getElementById("question").value.trim();
+      let answer = "";
+
+      if (lang === "fr" && translations[question]) {
+        answer = translations[question];
+      } else if (lang === "wolof" && translations[question]) {
+        answer = translations[question];
+      } else if (learning_wolof[question]) {
+        answer = learning_wolof[question];
+      } else {
+        answer = "Désolé, je ne connais pas la réponse.";
+      }
+      document.getElementById("response").innerText = answer;
+    }
+
+    function checkQuiz(answer) {
+      if (answer === "Jërëjëf") {
+        document.getElementById("quiz-response").innerText = "Bonne réponse !";
+      } else {
+        document.getElementById("quiz-response").innerText = "Non, réessaie.";
+      }
+    }
+  </script>
+</body>
+</html>
